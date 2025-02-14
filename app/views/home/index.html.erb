@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Slider Nav</title>
+    <style>
+        /* Styles CSS */
+        .et-hero-tabs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .et-hero-tabs-container {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .et-hero-tab {
+            padding: 10px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .et-hero-tab:hover {
+            color: #555;
+        }
+
+        .et-slide {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .et-main {
+            margin-top: 70px; /* Ajustez en fonction de la hauteur de votre navigation sticky */
+        }
+
+        .et-hero-tabs-container--top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+        }
+
+        .et-hero-tab-slider {
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            background-color: #000;
+            transition: all 0.3s ease;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Fonction pour définir le style du slider
+        function setSliderCss() {
+            if (this.currentTab) {
+                let width = this.currentTab.outerWidth(); // Utilise outerWidth pour inclure le padding
+                let left = this.currentTab.position().left; // Utilise position() pour le positionnement relatif
+                $('.et-hero-tab-slider').css({
+                    width: width,
+                    left: left,
+                    transition: 'all 0.3s ease' // Ajoute une transition fluide
+                });
+            }
+        }
+
+        // Fonction pour gérer le clic sur un onglet
+        function onTabClick(event, element) {
+            event.preventDefault();
+            let scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight;
+            $('html, body').animate({ scrollTop: scrollTop }, 600);
+        }
+
+        // Fonction pour trouver l'onglet actuel
+        function findCurrentTabSelector() {
+            let newCurrentId;
+            let newCurrentTab;
+            let self = this;
+            $('.et-hero-tab').each(function() {
+                let id = $(this).attr('href');
+                let offsetTop = $(id).offset().top - self.tabContainerHeight;
+                let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
+                if ($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
+                    newCurrentId = id;
+                    newCurrentTab = $(this);
+                }
+                $(this).attr('aria-selected', $(this).attr('href') === newCurrentId);
+            });
+            if (this.currentId != newCurrentId || this.currentId === null) {
+                this.currentId = newCurrentId;
+                this.currentTab = newCurrentTab;
+                this.setSliderCss();
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Section Hero -->
+    <section class="et-hero-tabs">
+        <h1>TRANSUBTIL RECORD</h1>
+        <h3>Une phrase qui décrit le label</h3>
+        <div class="et-hero-tabs-container" role="tablist">
+            <a class="et-hero-tab" href="#tab-es6" role="tab" aria-selected="false">Artistes</a>
+            <a class="et-hero-tab" href="#tab-flexbox" role="tab" aria-selected="false">Musics</a>
+            <a class="et-hero-tab" href="#tab-react" role="tab" aria-selected="false">Merchandising</a>
+            <a class="et-hero-tab" href="#tab-angular" role="tab" aria-selected="false">Video</a>
+            <a class="et-hero-tab" href="#tab-other" role="tab" aria-selected="false">Contact</a>
+            <span class="et-hero-tab-slider" role="presentation"></span>
+        </div>
+    </section>
+
+    <!-- Section Main -->
+    <main class="et-main">
+        <section class="et-slide" id="tab-es6">
+            <h1>Artistes</h1>
+            <h3>Découvrez nos artistes</h3>
+        </section>
+        <section class="et-slide" id="tab-flexbox">
+            <h1>Musics</h1>
+            <h3>Écoutez nos dernières musiques</h3>
+        </section>
+        <section class="et-slide" id="tab-react">
+            <h1>Merchandising</h1>
+            <h3>Achetez nos produits</h3>
+        </section>
+        <section class="et-slide" id="tab-angular">
+            <h1>Video</h1>
+            <h3>Regardez nos vidéos</h3>
+        </section>
+        <section class="et-slide" id="tab-other">
+            <h1>Contact</h1>
+            <h3>Prenez contact avec nous</h3>
+        </section>
+    </main>
+</body>
+</html>
