@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Psychedelic Background</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* Fond WebGL */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            position: relative; /* Permet de superposer le contenu */
+        }
+
+        /* Conteneur pour les informations */
+        .info-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; /* Agrandir la largeur */
+            height: 60%; /* Agrandir la hauteur */
+            background: rgba(0, 0, 0, 0.8); /* Plus opaque */
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            font-family: Arial, sans-serif;
+            z-index: 1; /* Assure que le contenu est au-dessus de l'arrière-plan */
+            overflow: auto; /* Si le contenu dépasse, il peut défiler */
+        }
+
+        /* Pour s'assurer que le texte est bien lisible */
+        h1, p {
+            margin: 0;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Conteneur pour afficher des informations -->
+    <div class="info-container">
+        <h1>Bienvenue sur le fond WebGL</h1>
+        <p>Ce texte est affiché sur un fond animé en WebGL.</p>
+        <p>Profite de l'effet visuel !</p>
+        <p>Voici un exemple d'un cadre agrandi avec une transparence plus opaque.</p>
+    </div>
+
+    <script>
+        let scene = new THREE.Scene();
+        let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        let renderer = new THREE.WebGLRenderer();
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // ---- 🔳 Fond avec un dégradé animé plus subtil ----
+        let planeGeometry = new THREE.PlaneGeometry(0, 100);
+        let planeMaterial = new THREE.ShaderMaterial({
+            uniforms: { time: { value: 0.0 } },
+            vertexShader: `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform float time;
+                varying vec2 vUv;
+                void main() {
+                    // Créer un dégradé animé au lieu de motifs complexes
+                    vec3 color1 = vec3(0.2, 0.5, 0.8); // Bleu
+                    vec3 color2 = vec3(0.8, 0.3, 0.5); // Rose
+                    vec3 gradient = mix(color1, color2, 0.5 + 0.5 * sin(time * 0.2 + vUv.x * 10.0));
+                    
+                    gl_FragColor = vec4(gradient, 1.0);
+                }
+            `,
+            side: THREE.DoubleSide
+        });
+
+        // ---- 🔥 Torus Knot avec rotation plus lente et mouvements subtils ----
+        let geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        let material = new THREE.MeshStandardMaterial({ color: 0xffffff, wireframe: true });
+        let torusKnot = new THREE.Mesh(geometry, material);
+        
+        scene.add(torusKnot);
+        camera.position.z = 0;
+
+        // Lumière blanche
+        let light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+
+        let clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            let elapsedTime = clock.getElapsedTime();
+
+            // Rotation plus lente et subtile
+            torusKnot.rotation.x += 0.001;
+            torusKnot.rotation.y += 0.001;
+
+            // Mise à jour du shader du fond
+            planeMaterial.uniforms.time.value = elapsedTime;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+
+</body>
+</html>

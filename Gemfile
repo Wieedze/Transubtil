@@ -1,5 +1,11 @@
 source "https://rubygems.org"
 
+gem 'table_print'
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]

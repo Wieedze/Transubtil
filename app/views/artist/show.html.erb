@@ -1,0 +1,80 @@
+Page 4
+
+    <title>Artiste - SoundCloud Widget</title>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        iframe {
+            width: 100%;
+            max-width: 600px;
+            height: 166px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1><%= @artist["name"].capitalize %></h1>
+    <p><%= @artist["description"] %></p>
+    <h1><%= @artist['name'] %></h1>
+        <p><strong>Act:</strong> <%= @artist['act'] %></p>
+        <p><strong>Style:</strong> <%= @artist['style'].join(', ') %></p>
+        <p><strong>Country:</strong> <%= @artist['country'] %></p>
+
+        <h3>Social Links</h3>
+        <ul>
+        <% @artist['social'].each do |platform, url| %>
+            <li><a href="<%= url.start_with?('http') ? url : 'https:' + url %>" target="_blank"><%= platform.capitalize %></a></li>
+        <% end %>
+        </ul>
+
+
+<iframe id="soundcloud-widget" 
+    width="100%" height="166" 
+    scrolling="no" frameborder="no" 
+    allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=<%= URI.encode_www_form_component(@artist['social']['soundcloud']) %>">>
+</iframe>
+
+<script>
+async function getSoundCloudClientId() {
+    try {
+        const response = await fetch("https://soundcloud.com/");
+        const text = await response.text();
+        const match = text.match(/client_id":"(.*?)"/);
+        return match ? match[1] : null;
+    } catch (error) {
+        console.error("Erreur lors de la récupération du client_id :", error);
+        return null;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const username = "<%= @artist['social']['soundcloud'].gsub('/', '') %>";
+    const widgetUrl = document.querySelector('#soundcloud-widget');
+
+    try {
+        const client_id = await getSoundCloudClientId();
+        if (!client_id) {
+            console.error("Impossible de récupérer un client_id valide.");
+            return;
+        }
+
+        const response = await fetch(`https://api.soundcloud.com/resolve?url=https://soundcloud.com/${username}&client_id=${client_id}`);
+        const data = await response.json();
+
+        if (data.id) {
+            widgetUrl.src = `https://w.soundcloud.com/player/?url=https://api.soundcloud.com/users/${data.id}`;
+        } else {
+            console.error("Impossible de récupérer l'ID utilisateur.");
+        }
+    } catch (error) {
+        console.error("Erreur lors de l'appel à l'API SoundCloud :", error);
+    }
+});
+</script>
+</body>
+</html>

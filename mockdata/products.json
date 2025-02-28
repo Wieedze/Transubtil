@@ -1,0 +1,36 @@
+[
+{
+    "id" : 1 ,
+    "name": "T-Shirt Japan Serie 'Mask'",
+    "description": "T-shirt exclusif ",
+    "price": "24.50 €",
+    "image_url": "https://f4.bcbits.com/img/0037802015_10.jpg",
+    "link": "https://transubtilrec.bandcamp.com/merch/japan-serie-mask"
+},
+{
+    "id" : 2 ,
+    "name": "T-Shirt Japan Serie 'Droid'",
+    "description": "T-shirt exclusif ",
+    "price": "24.50 €",
+    "image_url": "https://f4.bcbits.com/img/0037801813_10.jpg",
+    "link": "https://transubtilrec.bandcamp.com/merch/japan-serie-droid"
+},
+{
+    "id" : 3,
+    "name": "T-Shirt Japan Serie 'Clown'",
+    "description": "T-shirt exclusif ",
+    "price": "24.50 €",
+    "image_url": "https://f4.bcbits.com/img/0037802040_10.jpg",
+    "link": "https://transubtilrec.bandcamp.com/merch/japan-serie-clown"
+},
+{
+    "id" : 4,
+    "name": "V.A Divergent Polarity, Limited Edition Double Disc",
+    "description": "Various artists ",
+    "price": "19.95€",
+    "image_url": "https://f4.bcbits.com/img/a3806326053_10.jpg",
+    "link": "https://transubtilrec.bandcamp.com/album/v-a-divergent-polarity"
+}
+]
+
+

@@ -1,0 +1,2 @@
+module MerchandisingHelper
+end

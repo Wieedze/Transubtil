@@ -1,5 +1,9 @@
 body {
     font-family: "Century Gothic", 'Lato', sans-serif;
+    background-image: url('./images/background2.webp');
+    background-size: cover; /* Ajuste l'image pour couvrir toute la page */
+    background-position: center; /* Centre l'image */
+    background-attachment: fixed; /* Fixe l'image pour un effet parallax */
 }
 
 a {
@@ -14,7 +18,7 @@ justify-content: center;
 align-items: center;
 height: 100vh;
 position: relative;
-background: #eee;
+background: #eeeeee00;
     text-align: center;
     padding: 0 2em;
 h1 {
@@ -56,7 +60,7 @@ letter-spacing: 0.1rem;
     font-size: 0.8rem;
   &:hover {
         color:white;
-  background: rgba(102,177,241,0.8);
+  background: rgba(55, 55, 55, 0.8);
         transition: all 0.5s ease;
 }
 }
@@ -84,3 +88,44 @@ h3 {
     font-size: 1rem;
 }
 }
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto; /* Assure-toi que les images sont bien redimensionnées */
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 20px; /* Augmenter la taille du bouton */
+    font-size: 36px; /* Agrandir la taille des icônes */
+    cursor: pointer;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
