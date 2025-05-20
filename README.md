@@ -25,6 +25,7 @@ Ce projet a pour objectif de :
 - Rôles : client, artiste, admin.
 - Tableau de bord personnalisé.
 
+  
 ### 2. 🎚️ Espace Studio & Mastering
 - Formulaire de demande de prestation.
 - Upload et échange de fichiers audio (type mini-cloud).
@@ -36,12 +37,19 @@ Ce projet a pour objectif de :
 - Section vidéo avec leurs performances live.
 - Formulaire de booking pour les programmateurs.
 - Boutique en ligne (CD, merch...).
+- Inscription à une **newsletter** pour recevoir les actualités du label, les sorties à venir et les nouveaux artistes.
 
 ### 4. 🎨 UX/UI – Landing page interactive
 - Landing animée avec deux entrées : **Studio** ou **Label**.
 - Thème visuel contrasté : **noir sur blanc** pour une partie, **blanc sur noir** pour l'autre.
 - Transitions dynamiques (JS, React, animation).
 
+### 📬 Mailer et automatisation de la newsletter
+- Mise en place d’un système d’inscription à la newsletter.
+- Envoi automatique ou programmé via un service comme **Mailgun**, **Sendgrid** ou **Brevo** (anciennement Sendinblue).
+- Possibilité d’intégrer un système de **préférences utilisateur** (artistes favoris, type de contenu souhaité, etc.).
+- Option d’automatisation via un bot pour des envois ciblés ou des recommandations personnalisées.
+- 
 ---
 
 ## 🛠️ Stack technique visée :
