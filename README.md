@@ -13,7 +13,7 @@ Dans le cadre de l'examen final THP Développeur, je propose la réalisation d'u
 Ce projet a pour objectif de :
 
 - Mettre en œuvre nos compétences full-stack en allant plus loin sur le front (React, JS avancé).
-- Travailler en équipe sur un projet ambitieux, structuré, et potentiellement déployé en production.
+- Travailler en équipe sur un projet ambitieux, structuré, et déployé en production.
 - Fusionner compétences techniques et univers créatif dans un projet professionnel concret.
 
 ---
