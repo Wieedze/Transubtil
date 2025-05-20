@@ -1,6 +1,3 @@
-# 🎓 Projet pour l’examen de Développeur – The Hacking Project
----
-
 ## 🎯 Nom du projet :
 **Transubtil Platform** – Plateforme web dédiée à mon label **Transubtil Record**
 
