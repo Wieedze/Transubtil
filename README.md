@@ -75,6 +75,23 @@ Ce projet a pour objectif de :
 
 ---
 
+
+## 🔮 Évolution envisageable :
+
+### 🤖 Intégration d’un assistant intelligent (bot)
+- Mise en place d’un bot (ex. via IA ou chatbot custom) pour :
+  - Faciliter les échanges entre les artistes et l’ingénieur son.
+  - Gérer l’upload et le suivi des démos.
+  - Fournir un premier retour automatique sur les pistes envoyées (analyse spectrale, niveaux, etc.).
+
+### 🧬 Ouverture vers le Web3 & l’identité numérique
+- Intégration de **smart contracts** pour :
+  - Permettre aux artistes ou fans d’**adhérer au label** via une plateforme décentralisée.
+  - Garantir la transparence des engagements, royalties, ou bookings via blockchain.
+  - Créer un espace communautaire autour du label avec des **droits d’accès tokenisés**.
+
+---
+
 ## 💬 Motivation personnelle :
 
 Ce projet représente un **véritable besoin** pour mon activité artistique et entrepreneuriale.  
