@@ -35,7 +35,7 @@ Ce projet a pour objectif de :
 - Pages artistes (bio, liens, vidéos).
 - Section vidéo avec leurs performances live.
 - Formulaire de booking pour les programmateurs.
-- Boutique en ligne (vinyles, merch...).
+- Boutique en ligne (CD, merch...).
 
 ### 4. 🎨 UX/UI – Landing page interactive
 - Landing animée avec deux entrées : **Studio** ou **Label**.
